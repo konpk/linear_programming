@@ -45,7 +45,7 @@ def generate_bipartite_graph(n, p, count):
 
 def calculate_maximum_matching_time(vertexes_count, method="simplex"):
     """
-    Calculates the average time to solve a maximum matching problem
+    Calculates the average time to solve a relaxation of maximum matching problem
     for a set of graphs of a certain size
     :param vertexes_count: number of vertices in one part
     :param method: method to solve (one of the simplex, ip or ellipsoid)
@@ -162,7 +162,7 @@ def generate_flow_graph(n, p, count):
 
 def calculate_maximum_flow_time(vertexes_count, method="simplex"):
     """
-    Calculates the average time to solve a maximum flow problem
+    Calculates the average time to solve a relaxation of maximum flow problem
     for a set of graphs of a certain size
     :param vertexes_count: number of vertices in graph
     :param method: method to solve (one of the simplex, ip or ellipsoid)
