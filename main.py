@@ -28,7 +28,7 @@ def generate_bipartite_graph(n, p, count):
     :param count: number of graphs for generation
     :return: None
     """
-    
+
     matrices = []
     graphs = []
 
@@ -45,13 +45,13 @@ def generate_bipartite_graph(n, p, count):
 
 def calculate_maximum_matching_time(vertexes_count, method="simplex"):
     """
-    Calculates the average time to solve a relaxation of maximum matching problem
-    for a set of graphs of a certain size
+    Calculates the average time to solve a relaxation of
+    maximum matching problem for a set of graphs of a certain size
     :param vertexes_count: number of vertices in one part
     :param method: method to solve (one of the simplex, ip or ellipsoid)
     :return: None
     """
-    
+
     matrices = None
     graphs = []
 
@@ -119,7 +119,8 @@ def generate_flow_graph(n, p, count):
     problem and constructs their adjacency matrix.
     Saves the result in pickle format.
     :param n: number of vertices in graph
-    :param p: probability of an edge between two vertices, except first and last
+    :param p: probability of an edge between two vertices,
+              except first and last
     :param count: number of graphs for generation
     :return: None
     """
@@ -168,7 +169,7 @@ def calculate_maximum_flow_time(vertexes_count, method="simplex"):
     :param method: method to solve (one of the simplex, ip or ellipsoid)
     :return: None
     """
-    
+
     matrices = None
     graphs = None
     c_vecs = None
@@ -263,12 +264,13 @@ def netlib_calculate_time(path, method="simplex", count=5):
     """
     Calculates the average time to solve problem from netlib.
     Problems have .mat format and look like
-    min   c'x 
+    min   c'x
     s.t.  Ax = b,
     lbounds <= x <= ubounds
-    
+
     :param path: path to the .mat file
-    :param method: method to solve (one of the simplex, ip, highs-ip or highs-ds)
+    :param method: method to solve (one of the simplex, ip,
+                   highs-ip or highs-ds)
     :param count: number of runs to evaluate
     :return: None
     """

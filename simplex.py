@@ -2,7 +2,25 @@ import numpy as np
 
 
 class SimplexSolver:
+    """
+    Implementation of the simplex method in
+    matrix form for solving LP problems such as:
+    c^T x -> min, Ax = b, x >= 0
+    """
+
     def __init__(self, A, b, c, eps=1e-5, is_slack=False):
+        """
+        Solver initialization
+        :param A: constraint matrix
+        :param b: constraint vector
+        :param c: vector of coefficients of the objective function
+        :param eps: parameter for computational stability,
+                    values less than eps are taken equal to zero
+        :param is_slack: flag indicating whether the constraint
+                         matrix contains slack variables
+        :return: None
+        """
+
         self.A = A
         self.b = b
         self.c = c
@@ -10,6 +28,12 @@ class SimplexSolver:
         self.is_slack = is_slack
 
     def solve(self):
+        """
+        Function for finding a solution
+        :return: the answer returns the optimal value of the variables and
+                 the objective function, as well as a list of basic variables
+        """
+
         A = self.A
         c = self.c
         b = self.b

@@ -3,7 +3,27 @@ import matplotlib.pyplot as plt
 
 
 class EllipsoidMethodSolver:
+    """
+    Implementation of the ellipsoid method for searching for
+    a point belonging to a set, which is given in the form:
+    Cx <= d.
+    Solving LP problems is implemented using the
+    sliding objective optimization
+    """
+
     def __init__(self, C, d, c=None, eps=1e-5, start_r=None, n_iter=None):
+        """
+        Solver initialization
+        :param C: constraint matrix
+        :param d: constraint vector
+        :param c: vector of coefficients of the objective function
+        :param eps: parameter for computational stability,
+                    values less than eps are taken equal to zero
+        :param start_r: radius of the initial ellipsoid
+        :param n_iter: number of iterations in the method
+        :return: None
+        """
+
         self.C = C
         self.d = d
         self.c = c
@@ -12,7 +32,16 @@ class EllipsoidMethodSolver:
         self.n_iter = n_iter
 
     def draw_2d(self, A, x):
-        U, D, V = np.linalg.svd(A)
+        """
+        Method for drawing an ellipsoid in a two-dimensional case.
+        The ellipsoid is given in the form:
+        (y - x)^T A^{-1} (y - x) <= 1
+        :param A: matrix defining the ellipsoid
+        :param x: ellipsoid center
+        :return: None
+        """
+
+        _, D, V = np.linalg.svd(A)
         a = 1 / np.sqrt(D[0])
         b = 1 / np.sqrt(D[1])
 
@@ -27,6 +56,13 @@ class EllipsoidMethodSolver:
         plt.plot(S[0, :], S[1, :])
 
     def find_encoding_length(self, elements):
+        """
+        A function that determines the encoding length for
+        a system of matrices and/or vectors
+        :param elements: iterable object containing matrices and/or vectors
+        :return: encoding length value
+        """
+
         res = 0
 
         for e in elements:
@@ -35,6 +71,14 @@ class EllipsoidMethodSolver:
         return res
 
     def solve(self, is_opt=False):
+        """
+        Function for finding a solution
+        :is_opt: flag indicating what problem needs
+                 to be solved (optimization or point search)
+        :return: a point from a set or the optimal value of
+                 variables depending on the value of the flag
+        """
+
         C = self.C
         d = self.d
         current_opt = None

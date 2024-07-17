@@ -2,12 +2,36 @@ import numpy as np
 
 
 class InteriorPointSolver:
+    """
+    Implementation of the interior point method in
+    matrix form for solving LP problems such as:
+    c^T x -> min, Ax = b, x >= 0
+    """
+    
     def __init__(self, A, b, c):
+        """
+        Solver initialization
+        :param A: constraint matrix
+        :param b: constraint vector
+        :param c: vector of coefficients of the objective function
+        :return: None
+        """
+        
         self.A = A
         self.b = b
         self.c = c
 
     def solve(self, eps=1e-3, theta=0.5):
+        """
+        Function for finding a solution
+        :param eps: parameter for computational stability,
+                    values less than eps are taken equal to zero
+        :param theta: parameter defining the displacement value
+                      for the Newton method
+        :return: the optimal value of the variables and the objective function,
+                 as well as None to match the format with the simplex method
+        """
+
         A = self.A
         c = self.c
         b = self.b
